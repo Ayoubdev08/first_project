@@ -1,0 +1,78 @@
+body {
+    display: flex; /* Utilisation de flexbox pour le centrage vertical et horizontal */
+    justify-content: center; /* Centrage horizontal des éléments fils */
+    align-items: center; /* Centrage vertical des éléments fils */
+    height: 100vh; /* Hauteur égale à 100% de la hauteur de la vue */
+    background: linear-gradient(135deg, #000000, #7ac2c2); /* Dégradé linéaire en arrière-plan */
+    margin: 0; /* Suppression des marges par défaut */
+    font-family: 'Georgia', serif; /* Police de caractères */
+}
+
+.calculator {
+    background-color: #404040; /* Couleur de fond gris foncé pour la calculatrice */
+    padding: 80px; /* Espacement intérieur de 70px */
+    border-radius: 40px; /* Bordures arrondies */
+    box-shadow: 0 20px 70px rgb(140, 197, 192); /* Ombre portée */
+}
+.buttons {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne si nécessaire */
+    justify-content: center; /* Centre les boutons horizontalement */
+    gap: 10px; /* Espacement entre les boutons */
+}
+
+button {
+    flex: 1 1 calc(25% - 10px); /* 25% de largeur pour chaque bouton, ajusté avec gap */
+    /* Le reste du CSS reste inchangé */
+}
+
+
+#greeting {
+    position: absolute; /* Position absolue par rapport au viewport */
+    top: 235px; /* Décalage de 240px depuis le haut */
+    left: 50%; /* Centrage horizontal */
+    transform: translateX(-60%); /* Centrage horizontal avec transform */
+    font-size: 30px; /* Taille de police de 24px */
+    color: #ffffff; /* Couleur du texte blanc */
+    font-family: 'Courier New', Courier, monospace; /* Police de caractères */
+}
+
+
+#display {
+    width: 100%; /* Largeur à 100% du conteneur parent */
+    height: 65px; /* Hauteur de 65px */
+    text-align: center; /* Centrage du texte horizontal */
+    margin-bottom: 40px; /* Marge inférieure de 50px */
+    padding-right: 1px; /* Espacement intérieur à droite de 1px */
+    font-size: 20px; /* Taille de police de 20px */
+    border: 2px solid #8cc5c0; /* Bordure de 2px solide avec couleur */
+    border-radius: 25px; /* Bordure arrondie */
+    background-color: #555555; /* Couleur de fond gris foncé */
+    color: #ffffff; /* Couleur du texte blanc */
+}
+
+.buttons {
+    display: grid; /* Utilisation de CSS Grid pour la disposition des boutons */
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales dans la grille */
+    gap: 10px; /* Espacement de 10px entre les éléments de la grille */
+}
+
+button {
+    width: 100%; /* Largeur des boutons à 100% de leur conteneur */
+    padding: 20px; /* Espacement intérieur de 20px */
+    font-size: 20px; /* Taille de police de 20px */
+    border: none; /* Pas de bordure */
+    border-radius: 20px; /* Bordure arrondie */
+    background-color: #000000; /* Couleur de fond des boutons */
+    color: #216864; /* Couleur du texte des boutons */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s; /* Transition fluide de la couleur de fond */
+}
+
+button:hover {
+    background-color: #9edcdc; /* Couleur de fond au survol */
+}
+
+button:active {
+    background-color: #ffffff; /* Couleur de fond au clic */
+}
