@@ -1,0 +1,83 @@
+body {
+    display: flex; /* Utilise un modèle de boîte flex */
+    flex-direction: column; /* Dispose les éléments en colonne */
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center; /* Centre les éléments verticalement */
+    height: 100vh; /* Prend 100% de la hauteur de la fenêtre */
+    background: linear-gradient(135deg, #000000, #7ac2c2); /* Définit un dégradé linéaire comme arrière-plan */
+    margin: 0; /* Supprime les marges par défaut */
+}
+
+.brand {
+    font-size: 25px; /* Taille de police */
+    position: absolute; /* Position absolue par rapport au parent */
+    top: 10px; /* À 10 pixels du haut */
+    left: 50%; /* À 50% de la largeur du parent */
+    transform: translateX(-50%); /* Déplace de -50% de sa propre largeur */
+    font-family: 'Courier New', Courier, monospace; /* Police de caractères */
+    color: white; /* Couleur du texte */
+}
+
+.calculator {
+    background-color: #474747; /* Couleur de fond au clic */
+    padding: 70px; /* Espacement intérieur */
+    border-radius: 40px; /* Bordure arrondie */
+    box-shadow: 0 20px 100px rgb(255, 255, 255); /* Ombre portée */
+    position: relative; /* Position relative */
+    margin-top: 10px; /* Marge supérieure */
+    text-align: center; /* Alignement du texte */
+}
+
+.buttons {
+    display: grid; /* Utilise un modèle de boîte grille */
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
+    gap: 10px; /* Espacement entre les éléments */
+}
+
+button {
+    width: 100%; /* Largeur pleine */
+    padding: 15px; /* Espacement intérieur */
+    font-size: 30px; /* Taille de police */
+    border: none; /* Pas de bordure */
+    border-radius: 100px; /* Bordure très arrondie */
+    background: linear-gradient(135deg, #000000, #7ac2c2); /* Définit un dégradé linéaire comme arrière-plan */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s; /* Animation de transition */
+}
+
+button:hover {
+    background: linear-gradient(135deg, #7ac2c2, #000000); /* Définit un dégradé linéaire comme arrière-plan */
+}
+
+button:active {
+    background: #ffffff; /* Changement de couleur au clic */
+    transition: background 0.5s ease; /* Transition pour une meilleure visibilité */
+}
+
+
+#display {
+    width: 93%; /* Largeur */
+    height: 60px; /* Hauteur */
+    text-align: right; /* Alignement du texte à droite */
+    margin-bottom: 50px; /* Marge inférieure */
+    padding-right: 7px; /* Espacement à droite */
+    font-size: 20px; /* Taille de police */
+    border: 2px solid #8cc5c0; /* Bordure */
+    border-radius: 20px; /* Bordure arrondie */
+    background-color: #9c9c9c; /* Couleur de fond */
+    color: #000000; /* Couleur du texte */
+}
+
+#history {
+    width: 98%; /* Largeur */
+    height: 150px; /* Hauteur */
+    overflow-y: auto; /* Défilement vertical automatique */
+    background-color: #9f9f9f; /* Couleur de fond */
+    color: #ffffff; /* Couleur du texte */
+    border: 2px solid #8cc5c0; /* Bordure */
+    border-radius: 25px; /* Bordure arrondie */
+    padding: 10px; /* Espacement intérieur */
+    box-sizing: border-box; /* La taille totale inclut la bordure */
+    margin-bottom: 50px; /* Marge inférieure */
+    text-align: left; /* Alignement du texte à gauche */
+}

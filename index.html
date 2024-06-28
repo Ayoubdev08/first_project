@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">  <!-- Définit l'encodage des caractères de la page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Configure la vue adaptative pour les appareils mobiles -->
+    <title>Calculatrice</title>  <!-- Définit le titre de la page -->
+    <link rel="stylesheet" href="style.css">  <!-- Lie le fichier de style externe style.css -->
+</head>
+<body>
+<div class="calculator">  <!-- Div principale pour la calculatrice -->
+    <div class="brand">Casio</div>  <!-- Div affichant le nom de la marque -->
+    <input type="text" id="display" disabled>  <!-- Champ d'affichage pour les calculs, désactivé pour empêcher la saisie directe -->
+    <div id="history"></div>  <!-- Div pour afficher l'historique des calculs -->
+    <div class="buttons">  <!-- Div contenant les boutons de la calculatrice -->
+        <!-- Boutons numériques et opérateurs avec des fonctions onclick pour exécuter des actions -->
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendOperator('+')">+</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendOperator('-')">-</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendOperator('*')">*</button>
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendNumber('.')">.</button>
+        <button onclick="appendOperator(':')">:</button>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="backspace()">⌫</button>
+        <button onclick="clearHistory()">H</button>
+    </div>
+</div>
+
+<script>
+    // Définition des variables JavaScript pour la manipulation des données de la calculatrice
+    let display = document.getElementById('display');
+    let history = document.getElementById('history');
+    let currentInput = '';
+    let operator = '';
+    let firstNumber = '';
+    let calculations = [];
+
+    // Fonction pour ajouter un chiffre à l'affichage
+    function appendNumber(number) {
+        currentInput += number;
+        display.value = currentInput;
+    }
+
+    // Fonction pour ajouter un opérateur et commencer un nouveau calcul
+    function appendOperator(op) {
+        if (currentInput === '') return;
+        if (operator !== '') calculate();
+        operator = op;
+        firstNumber = currentInput;
+        currentInput = '';
+    }
+
+    // Fonction pour effectuer le calcul basé sur l'opérateur sélectionné
+    function calculate() {
+        if (firstNumber === '' || currentInput === '') return;
+        let result;
+        const num1 = parseFloat(firstNumber);
+        const num2 = parseFloat(currentInput);
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case ':':
+                result = num1 / num2;
+                break;
+            default:
+                return;
+        }
+        display.value = result;  // Affiche le résultat dans le champ d'affichage
+        let calculation = `${firstNumber} ${operator} ${currentInput} = ${result}`;
+        calculations.push(calculation);  // Ajoute le calcul à l'historique des calculs
+        updateHistory();  // Met à jour l'affichage de l'historique
+        currentInput = result.toString();
+        operator = '';
+        firstNumber = '';
+    }
+
+    // Fonction pour effacer tout l'affichage et réinitialiser les variables
+    function clearDisplay() {
+        currentInput = '';
+        operator = '';
+        firstNumber = '';
+        display.value = '';
+    }
+
+    // Fonction pour effacer le dernier caractère de l'affichage
+    function backspace() {
+        if (currentInput !== '') {
+            currentInput = currentInput.slice(0, -1);
+            display.value = currentInput;
+        } else if (operator !== '') {
+            operator = '';
+        } else if (firstNumber !== '') {
+            firstNumber = firstNumber.slice(0, -1);
+            display.value = firstNumber;
+            currentInput = firstNumber;
+        }
+    }
+
+    // Fonction pour effacer l'historique des calculs
+    function clearHistory() {
+        calculations = [];  // Réinitialise le tableau des calculs
+        updateHistory();    // Met à jour l'affichage de l'historique (qui sera vide)
+    }
+
+    // Fonction pour mettre à jour l'affichage de l'historique des calculs
+    function updateHistory() {
+        history.innerHTML = calculations.map(calc => `<div>${calc}</div>`).join('');
+    }
+
+    // Écouteur d'événement pour gérer les entrées clavier
+    document.addEventListener('keydown', function (event) {
+        const key = event.key;
+        if (/\d/.test(key)) {
+            appendNumber(key);
+        } else if (key === '+' || key === '-' || key === '*' || key === ':') {
+            appendOperator(key);
+        } else if (key === '.' || key === ',') {
+            appendNumber('.');
+        } else if (key === 'Enter') {
+            calculate();
+        } else if (key === 'c') {
+            clearDisplay();
+        } else if (key === 'Backspace') {
+            backspace();
+        } else if (key === 'h' || key === 'H') {
+            clearHistory();
+        }
+    });
+</script>
+
+</body>
+</html>
